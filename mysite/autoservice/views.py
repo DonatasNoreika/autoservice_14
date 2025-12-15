@@ -156,3 +156,25 @@ class OrderCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateVie
 
     def test_func(self):
         return self.request.user.is_staff
+
+
+class OrderUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = Order
+    template_name = "form.html"
+    fields = ['car', 'status']
+
+    def get_success_url(self):
+        return reverse("order", kwargs={"pk": self.object.pk})
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class OrderDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = Order
+    template_name = "order_delete.html"
+    context_object_name = "order"
+    success_url = reverse_lazy('orders')
+
+    def test_func(self):
+        return self.request.user.is_staff

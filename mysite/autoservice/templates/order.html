@@ -9,6 +9,10 @@
 <p>Automobilis: {{ order.car }}</p>
 <p>Data: {{ order.date }}</p>
 <p>Būsena: {{ order.get_status_display }}</p>
+<div>
+    <a class="btn btn-warning btn-sm" href="{% url 'order_update' order.pk %}">Redaguoti</a>
+    <a class="btn btn-danger btn-sm" href="{% url 'order_delete' order.pk %}">Ištrinti</a>
+</div>
 
 <table class="table table-hover">
     <thead>

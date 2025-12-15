@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Taisymo trynimas{% endblock %}
+
+{% block heading %}Taisymo trynimas{% endblock %}
+
+{% block content %}
+<p>Ar tikrai norite ištrinti taisymą "{{ order }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    {% load crispy_forms_tags %}
+    <button type="submit" class="btn btn-primary">Taip</button>
+    <a class="btn btn-secondary" href="{% url 'order' order.pk %}">Ne</a>
+</form>
+
+{% endblock %}
