@@ -197,3 +197,25 @@ class OrderLineCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.Creat
         return self.request.user.is_staff
 
 
+class OrderLineUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = OrderLine
+    template_name = "form.html"
+    fields = ['service', 'quantity']
+
+    def get_success_url(self):
+        return reverse("order", kwargs={"pk": self.object.order.pk})
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class OrderLineDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = OrderLine
+    template_name = "line_delete.html"
+    context_object_name = "line"
+
+    def get_success_url(self):
+        return reverse("order", kwargs={"pk": self.object.order.pk})
+
+    def test_func(self):
+        return self.request.user.is_staff
