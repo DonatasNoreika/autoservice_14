@@ -11,7 +11,9 @@
 <hr>
 <h3>Taisymai:</h3>
 {% for order in car.orders.all %}
-<p>{{ order.date }} ({{ order.get_status_display }})</p>
+<p><a href="{% url 'userorder' order.pk %}">{{ order.date }} ({{ order.get_status_display }})</a></p>
+{% empty %}
+<p>Nėra taisymų</p>
 {% endfor %}
 
 {% endblock %}

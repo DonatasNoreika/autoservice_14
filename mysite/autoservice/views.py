@@ -29,3 +29,11 @@ class UserCarDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailV
     def test_func(self):
         return self.get_object().owner == self.request.user
 
+
+class UserOrderDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
+    model = Order
+    template_name = "userorder.html"
+    context_object_name = "order"
+
+    def test_func(self):
+        return self.get_object().car.owner == self.request.user
