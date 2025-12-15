@@ -86,3 +86,12 @@ class CarListView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
 
     def test_func(self):
         return self.request.user.is_staff
+
+
+class CarDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
+    model = Car
+    template_name = "car.html"
+    context_object_name = "car"
+
+    def test_func(self):
+        return self.request.user.is_staff
