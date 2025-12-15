@@ -11,6 +11,6 @@
 </div>
 {% for order in orders %}
 <hr>
-<p><a href="">{{ order }}</a></p>
+<p><a href="{% url 'order' order.pk %}">{{ order }}</a></p>
 {% endfor %}
 {% endblock %}

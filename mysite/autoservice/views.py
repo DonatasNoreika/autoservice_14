@@ -135,3 +135,12 @@ class OrderListView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
 
     def test_func(self):
         return self.request.user.is_staff
+
+
+class OrderDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
+    model = Order
+    template_name = "order.html"
+    context_object_name = "order"
+
+    def test_func(self):
+        return self.request.user.is_staff
