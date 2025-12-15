@@ -7,7 +7,7 @@
 {% block content %}
 
 <div>
-    <a class="btn btn-primary" href="">Nauja</a>
+    <a class="btn btn-primary" href="{% url 'car_create' %}">Naujas</a>
 </div>
 {% for car in cars %}
 <hr>

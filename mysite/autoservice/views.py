@@ -95,3 +95,13 @@ class CarDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView)
 
     def test_func(self):
         return self.request.user.is_staff
+
+
+class CarCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
+    model = Car
+    template_name = "form.html"
+    fields = ['make', 'model', 'owner', 'license_plate', 'vin_code']
+    success_url = reverse_lazy('cars')
+
+    def test_func(self):
+        return self.request.user.is_staff
