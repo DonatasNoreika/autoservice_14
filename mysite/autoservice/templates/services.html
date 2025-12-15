@@ -6,8 +6,12 @@
 
 {% block content %}
 
+<div>
+    <a class="btn btn-primary" href="{% url 'service_create' %}">Nauja</a>
+</div>
 {% for service in services %}
 <hr>
-<p>{{ service }}</p>
+<p>{{ service.name }}</p>
+<p>Kaina: {{ service.price }}</p>
 {% endfor %}
 {% endblock %}

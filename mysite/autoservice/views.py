@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 from .models import Service, Car, Order, OrderLine
 
@@ -43,6 +44,16 @@ class ServiceListView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView)
     model = Service
     template_name = "services.html"
     context_object_name = "services"
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class ServiceCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
+    model = Service
+    template_name = "form.html"
+    fields = ['name', 'price']
+    success_url = reverse_lazy('services')
 
     def test_func(self):
         return self.request.user.is_staff
