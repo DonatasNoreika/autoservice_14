@@ -37,3 +37,12 @@ class UserOrderDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.Detai
 
     def test_func(self):
         return self.get_object().car.owner == self.request.user
+
+
+class ServiceListView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    model = Service
+    template_name = "services.html"
+    context_object_name = "services"
+
+    def test_func(self):
+        return self.request.user.is_staff

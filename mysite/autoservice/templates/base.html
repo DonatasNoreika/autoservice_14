@@ -53,6 +53,7 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
+
                             {% if user.is_authenticated %}
                             <div class="sb-sidenav-menu-heading">Mano</div>
                             <a class="nav-link" href="{% url 'usercars' %}">
@@ -60,6 +61,15 @@
                                 Automobiliai
                             </a>
                             {% endif %}
+
+                            {% if user.is_staff %}
+                            <div class="sb-sidenav-menu-heading">Administravimas</div>
+                            <a class="nav-link" href="{% url 'services' %}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Paslaugos
+                            </a>
+                            {% endif %}
+
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
