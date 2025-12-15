@@ -4,7 +4,7 @@
 {% block heading %}Paslaugos trynimas{% endblock %}
 
 {% block content %}
-<p>Ar tikrai norite ištrinti "{{ service.name }}"?</p>
+<p>Ar tikrai norite ištrinti paslaugą "{{ service.name }}"?</p>
 <form method="post">
     {% csrf_token %}
     {% load crispy_forms_tags %}

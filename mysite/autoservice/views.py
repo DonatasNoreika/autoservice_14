@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import Service, Car, Order, OrderLine
@@ -101,6 +101,27 @@ class CarCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView)
     model = Car
     template_name = "form.html"
     fields = ['make', 'model', 'owner', 'license_plate', 'vin_code']
+    success_url = reverse_lazy('cars')
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+class CarUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = Car
+    template_name = "form.html"
+    fields = ['make', 'model', 'owner', 'license_plate', 'vin_code']
+
+    def get_success_url(self):
+        return reverse("car", kwargs={"pk": self.object.pk})
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class CarDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = Car
+    template_name = "car_delete.html"
+    context_object_name = "car"
     success_url = reverse_lazy('cars')
 
     def test_func(self):

@@ -8,6 +8,10 @@
 
 <p>Valstybinis numeris: {{ car.license_plate }}</p>
 <p>VIN kodas: {{ car.vin_code }}</p>
+<div>
+    <a class="btn btn-warning btn-sm" href="{% url 'car_update' car.pk %}">Redaguoti</a>
+    <a class="btn btn-danger btn-sm" href="{% url 'car_delete' car.pk %}">Ištrinti</a>
+</div>
 <hr>
 <!--<h3>Taisymai:</h3>-->
 <!--{% for order in car.orders.all %}-->
