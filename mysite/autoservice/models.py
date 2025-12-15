@@ -21,7 +21,7 @@ class Car(models.Model):
 
 
 class Order(models.Model):
-    car = models.ForeignKey(to="Car", on_delete=models.CASCADE)
+    car = models.ForeignKey(to="Car", on_delete=models.CASCADE, related_name="orders")
     date = models.DateTimeField(auto_now_add=True)
 
     CHOICES_STATUS = [

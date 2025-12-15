@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 from django.views import generic
 from .models import Service, Car, Order, OrderLine
@@ -19,3 +19,13 @@ class UserCarListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return Car.objects.filter(owner=self.request.user)
+
+
+class UserCarDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
+    model = Car
+    template_name = "usercar.html"
+    context_object_name = "car"
+
+    def test_func(self):
+        return self.get_object().owner == self.request.user
+

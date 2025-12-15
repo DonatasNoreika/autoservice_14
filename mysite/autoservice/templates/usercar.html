@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Mano Automobilis{% endblock %}
+
+{% block heading %}Automobilis "{{ car.make }} {{ car.model }}" {% endblock %}
+
+{% block content %}
+
+<p>Valstybinis numeris: {{ car.license_plate }}</p>
+<p>VIN kodas: {{ car.vin_code }}</p>
+<hr>
+<h3>Taisymai:</h3>
+{% for order in car.orders.all %}
+<p>{{ order.date }} ({{ order.get_status_display }})</p>
+{% endfor %}
+
+{% endblock %}
