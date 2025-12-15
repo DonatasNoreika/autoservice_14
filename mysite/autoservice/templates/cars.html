@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Automobiliai{% endblock %}
+
+{% block heading %}Automobiliai{% endblock %}
+
+{% block content %}
+
+<div>
+    <a class="btn btn-primary" href="">Nauja</a>
+</div>
+{% for car in cars %}
+<hr>
+<p>{{ car }}</p>
+<div>
+    <a class="btn btn-warning btn-sm" href="">Redaguoti</a>
+    <a class="btn btn-danger btn-sm" href="">Ištrinti</a>
+</div>
+{% endfor %}
+{% endblock %}

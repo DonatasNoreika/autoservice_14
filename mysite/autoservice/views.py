@@ -77,3 +77,12 @@ class ServiceDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteV
 
     def test_func(self):
         return self.request.user.is_staff
+
+
+class CarListView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    model = Car
+    template_name = "cars.html"
+    context_object_name = "cars"
+
+    def test_func(self):
+        return self.request.user.is_staff
