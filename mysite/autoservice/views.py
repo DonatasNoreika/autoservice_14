@@ -144,3 +144,15 @@ class OrderDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailVie
 
     def test_func(self):
         return self.request.user.is_staff
+
+
+class OrderCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
+    model = Order
+    template_name = "form.html"
+    fields = ['car', 'status']
+
+    def get_success_url(self):
+        return reverse("order", kwargs={"pk": self.object.pk})
+
+    def test_func(self):
+        return self.request.user.is_staff
