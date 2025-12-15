@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Taisymai{% endblock %}
+
+{% block heading %}Taisymai{% endblock %}
+
+{% block content %}
+
+<div>
+    <a class="btn btn-primary" href="">Naujas</a>
+</div>
+{% for order in orders %}
+<hr>
+<p><a href="">{{ order }}</a></p>
+{% endfor %}
+{% endblock %}

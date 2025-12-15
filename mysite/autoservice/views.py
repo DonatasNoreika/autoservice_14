@@ -126,3 +126,12 @@ class CarDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView)
 
     def test_func(self):
         return self.request.user.is_staff
+
+
+class OrderListView(LoginRequiredMixin, UserPassesTestMixin, generic.ListView):
+    model = Order
+    template_name = "orders.html"
+    context_object_name = "orders"
+
+    def test_func(self):
+        return self.request.user.is_staff
