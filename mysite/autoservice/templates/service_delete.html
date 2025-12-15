@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Paslaugos trynimas{% endblock %}
+
+{% block heading %}Paslaugos trynimas{% endblock %}
+
+{% block content %}
+<p>Ar tikrai norite ištrinti "{{ service.name }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    {% load crispy_forms_tags %}
+    <button type="submit" class="btn btn-primary">Taip</button>
+    <a class="btn btn-secondary" href="{% url 'services' %}">Ne</a>
+</form>
+
+{% endblock %}

@@ -57,3 +57,23 @@ class ServiceCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateV
 
     def test_func(self):
         return self.request.user.is_staff
+
+
+class ServiceUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
+    model = Service
+    template_name = "form.html"
+    fields = ['name', 'price']
+    success_url = reverse_lazy('services')
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class ServiceDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = Service
+    template_name = "service_delete.html"
+    context_object_name = "service"
+    success_url = reverse_lazy('services')
+
+    def test_func(self):
+        return self.request.user.is_staff

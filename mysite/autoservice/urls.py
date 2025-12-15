@@ -8,4 +8,6 @@ urlpatterns = [
     path("userorders/<int:pk>/", views.UserOrderDetailView.as_view(), name="userorder"),
     path("services/", views.ServiceListView.as_view(), name="services"),
     path("services/create/", views.ServiceCreateView.as_view(), name="service_create"),
+    path("services/<int:pk>/update/", views.ServiceUpdateView.as_view(), name="service_update"),
+    path("services/<int:pk>/delete/", views.ServiceDeleteView.as_view(), name="service_delete"),
 ]
