@@ -13,11 +13,11 @@
     <a class="btn btn-danger btn-sm" href="{% url 'car_delete' car.pk %}">Ištrinti</a>
 </div>
 <hr>
-<!--<h3>Taisymai:</h3>-->
-<!--{% for order in car.orders.all %}-->
-<!--<p><a href="{% url 'userorder' order.pk %}">{{ order.date }} ({{ order.get_status_display }})</a></p>-->
-<!--{% empty %}-->
-<!--<p>Nėra taisymų</p>-->
-<!--{% endfor %}-->
+<h3>Taisymai:</h3>
+{% for order in car.orders.all %}
+<p><a href="{% url 'order' order.pk %}">{{ order.date }} ({{ order.get_status_display }})</a></p>
+{% empty %}
+<p>Nėra taisymų</p>
+{% endfor %}
 
 {% endblock %}
